@@ -5,8 +5,16 @@
   </div>    
 </template>
 
-<script lang="ts" setup>
-import Sidebar from './components/sidebar/Sidebar.vue'
+<script lang="ts">
+  import { defineComponent } from 'vue' ;
+  import Sidebar from './components/sidebar/Sidebar.vue'
+
+  export default defineComponent({
+      name: 'App',
+      components:{
+        Sidebar,
+      }
+  });
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <aside :class="`${isExpanded && 'is-expanded'}`">
+  <aside :class="`${state.isExpanded && 'is-expanded'}`">
     <div class="logo">
       <img class="logo-app" src="../../assets/vue.svg" alt="vue">
     </div>
@@ -29,20 +29,29 @@
         <span class="material-icons">login</span>
         <span class="text">Login</span>
       </router-link>
-    </div> 
+    </div>
   </aside>
 </template>
 
-<script lang="ts" setup>   
-import { ref } from 'vue'  
+<script lang="ts">   
+  import { ref, reactive, defineComponent } from 'vue' ; 
+ 
+  export default defineComponent({
+    name: 'Sidebar',    
+    setup(){
 
-const isExpanded = ref(localStorage.getItem('isExpanded') === 'true')
+      const state = reactive({
+        isExpanded: false
+      });  
 
-const ToggleMenu = () => {
-  isExpanded.value = !isExpanded.value
-  localStorage.setItem('isExpanded', String(isExpanded.value))
-}
-
+      function ToggleMenu() {
+        const is_Expanded = ref(localStorage.getItem('isExpanded') === 'true') 
+        state.isExpanded = !is_Expanded.value 
+        localStorage.setItem('isExpanded', String(state.isExpanded))        
+      }      
+      return { ToggleMenu , state };
+    }
+  });
 </script>
 
 <style lang="scss">
