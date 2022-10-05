@@ -1,13 +1,13 @@
 <template>
   <aside :class="`${state.isExpanded && 'is-expanded'}`">
     <div class="logo">
-      <img class="logo-app" src="../../assets/vue.svg" alt="vue">
+      <img class="logo-app" src="../../assets/vue.svg" alt="vue" />
     </div>
     <div class="menu-toggle-wrap">
       <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons">keyboard_double_arrow_right</span>
       </button>
-    </div> 
+    </div>
     <h3 class="group-item">Menu</h3>
     <div class="menu">
       <router-link class="item-menu" to="/">
@@ -19,7 +19,7 @@
         <span class="text">About</span>
       </router-link>
     </div>
-    <div class="sumary"/>
+    <div class="sumary" />
     <div class="menu">
       <router-link class="item-menu" to="/">
         <span class="material-icons">settings</span>
@@ -33,29 +33,27 @@
   </aside>
 </template>
 
-<script lang="ts">   
-  import { ref, reactive, defineComponent } from 'vue' ; 
- 
-  export default defineComponent({
-    name: 'Sidebar',    
-    setup(){
+<script lang="ts">
+import { ref, reactive, defineComponent } from "vue";
 
-      const state = reactive({
-        isExpanded: false
-      });  
+export default defineComponent({
+  name: "Sidebar",
+  setup() {
+    const state = reactive({
+      isExpanded: false,
+    });
 
-      function ToggleMenu() {
-        const is_Expanded = ref(localStorage.getItem('isExpanded') === 'true') 
-        state.isExpanded = !is_Expanded.value 
-        localStorage.setItem('isExpanded', String(state.isExpanded))        
-      }      
-      return { ToggleMenu , state };
+    function ToggleMenu() {
+      const is_Expanded = ref(localStorage.getItem("isExpanded") === "true");
+      state.isExpanded = !is_Expanded.value;
+      localStorage.setItem("isExpanded", String(state.isExpanded));
     }
-  });
+    return { ToggleMenu, state };
+  },
+});
 </script>
 
 <style lang="scss">
-
 @import "../../styles/theme.scss";
 
 aside {
@@ -70,7 +68,7 @@ aside {
   color: var(--light);
 
   transition: 0.2s ease-out;
-  
+
   .logo {
     margin-bottom: 1rem;
 
@@ -80,7 +78,7 @@ aside {
   }
 
   .sumary {
-      flex: 1 1 0;
+    flex: 1 1 0;
   }
 
   .menu-toggle-wrap {
@@ -91,7 +89,7 @@ aside {
     position: relative;
     top: 0;
     transition: 0.2s ease-out;
-  
+
     .menu-toggle {
       transition: 0.2s ease-out;
 
@@ -110,7 +108,8 @@ aside {
     }
   }
 
-  .group-item, .item-menu .text {
+  .group-item,
+  .item-menu .text {
     opacity: 0;
     transition: 03s ease-out;
   }
@@ -130,7 +129,7 @@ aside {
       align-items: center;
       text-decoration: none;
 
-      padding:  0.5rem 1rem;
+      padding: 0.5rem 1rem;
       transition: 02s ease-out;
 
       .material-icons {
@@ -145,10 +144,12 @@ aside {
         transition: 0.2s ease-out;
       }
 
-      &:hover, &.router-link-exact-active {
+      &:hover,
+      &.router-link-exact-active {
         background-color: var(--dark-alt);
 
-        .material-icons, .text {
+        .material-icons,
+        .text {
           color: var(--primary);
         }
       }
@@ -163,14 +164,15 @@ aside {
     width: var(--sidebar-width);
 
     .menu-toggle-wrap {
-      top:-3rem;
+      top: -3rem;
 
       .menu-toggle {
         transform: rotate(-180deg);
       }
     }
 
-    .group-item, .item-menu .text {
+    .group-item,
+    .item-menu .text {
       opacity: 1;
     }
 
